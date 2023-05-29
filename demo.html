@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="mystyle.css">
+  <title>匯率轉換計算機</title>
+</head>
+<body>
+  <h1>匯率轉換計算機</h1>
+  <p>請輸入台幣金額：</p>
+  <input id="inputAmount" type="text">
+  <br><br>
+  <input id="btn" type="button" value="提交" class="button">
+  <input type="reset" value="重置" class="button" onclick="clearForm()">
+  <hr>
+  <p>結果：<span class="summary"></span></p>
+  <ul>
+    <li>美金：<span id="usd" class="converted-amount"></span> 美元</li>
+    <li>歐元：<span id="eur" class="converted-amount"></span> 歐元</li>
+    <li>日圓：<span id="jpy" class="converted-amount"></span> 日圓</li>
+    <li>韓元：<span id="krw" class="converted-amount"></span> 韓元</li>
+    <li>澳幣：<span id="aud" class="converted-amount"></span> 澳幣</li>
+  </ul>
+
+  <script>
+ document.getElementById('btn').onclick = function() {
+  var inputAmount = parseFloat(document.getElementById('inputAmount').value);
+
+  if (isNaN(inputAmount)) {
+    alert("請輸入有效數值！");
+    clearForm();
+    return;
+  }
+  if (inputAmount<=0) {
+    alert("請輸入有效數值！");
+    clearForm();
+    return;
+  }
+
+  var usd = (inputAmount / 30.24).toFixed(2);
+  var eur = (inputAmount / 36.63).toFixed(2);
+  var jpy = (inputAmount / 0.21).toFixed(2);
+  var krw = (inputAmount / 0.02).toFixed(2);
+  var aud = (inputAmount / 19.67).toFixed(2);
+
+  document.getElementById('usd').textContent = usd;
+  document.getElementById('eur').textContent = eur;
+  document.getElementById('jpy').textContent = jpy;
+  document.getElementById('krw').textContent = krw;
+  document.getElementById('aud').textContent = aud;
+};
+
+function clearForm() {
+  document.getElementById('inputAmount').value = '';
+  document.getElementById('usd').textContent ='';
+  document.getElementById('eur').textContent = '';
+  document.getElementById('jpy').textContent = '';
+  document.getElementById('krw').textContent = '';
+  document.getElementById('aud').textContent = '';
+}
+  </script>
+</body>
+</html>
